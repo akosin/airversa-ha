@@ -1,6 +1,6 @@
 # AirVersa BLE protocol
 
-Reverse-engineered from the Sleekpoint Android app (1.0.87, "AK" protocol family) and verified live against a Scenta XL (model `ANW`, firmware `CY_V3.0`). The app scans for BLE names starting with `SP_` (also `SP1`–`SP4`, `A32`). Only `SP_ANW_*` has been tested.
+Reverse-engineered from the Sleekpoint Android app (1.0.87, "AK" protocol family) and verified live against a Scenta XL (model `ANW`, firmware `CY_V3.0`). Name prefix → model (`AppHelper.getModelFromBLEDeviceName`): `SP_`/`A32` = ANW, `SP1` = ANP, `SP2` = ANA, `SP3` = RDX, `SP4` = U1. U1 uses the separate "GW" protocol (different service/characteristics); the rest use this one. Only ANW has been verified. A third-party integration confirms the same login (`8F "8888OK01"`), keep-alive and `2D 13/12` power commands on an `SP3M…` (RDX).
 
 ## Transport
 

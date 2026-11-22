@@ -70,5 +70,22 @@ CONF_KEY        = "key"
 # Factory activation code (shown in the Sleekpoint app's activation screen)
 DEFAULT_KEY = "8888"
 
-# BLE local-name prefix the Sleekpoint app scans for (also in manifest.json)
-NAME_PREFIX = "SP_"
+# BLE local-name prefixes of Sleekpoint "AK" protocol devices (AppHelper.getModelFromBLEDeviceName).
+# Keep in sync with manifest.json. SP4 ("U1") uses the different GW protocol and is excluded.
+NAME_PREFIXES: tuple[str, ...] = ("SP_", "A32", "SP1", "SP2", "SP3")
+
+# Prefix -> (model code, product name). Only ANW is verified with this integration.
+MODEL_BY_PREFIX: dict[str, tuple[str, str]] = {
+    "SP_": ("ANW", "Scenta XL"),
+    "A32": ("ANW", "Scenta XL"),
+    "SP1": ("ANP", "AirVersa diffuser (ANP)"),
+    "SP2": ("ANA", "AirVersa diffuser (ANA)"),
+    "SP3": ("RDX", "Scenta"),
+}
+
+
+def model_for_name(name: str | None) -> tuple[str, str] | None:
+    for prefix, model in MODEL_BY_PREFIX.items():
+        if name and name.startswith(prefix):
+            return model
+    return None

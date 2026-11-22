@@ -3,7 +3,7 @@
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
 [![Validate](https://github.com/akosin/airversa-ha/actions/workflows/validate.yml/badge.svg)](https://github.com/akosin/airversa-ha/actions/workflows/validate.yml)
 
-Local Bluetooth control of **AirVersa** scent diffusers (tested with the **Scenta XL**) from Home Assistant. No Sleekpoint app and no cloud.
+Local Bluetooth control of **AirVersa** scent diffusers (tested with the **Scenta XL**, other models [likely work](#supported-devices)) from Home Assistant. No Sleekpoint app and no cloud.
 
 - Master power switch
 - Up to 5 schedules, each with an active window, days of the week, burst length and pause between bursts
@@ -11,6 +11,19 @@ Local Bluetooth control of **AirVersa** scent diffusers (tested with the **Scent
 - Discovered automatically over Bluetooth
 
 > This is an unofficial, community project. It isn't affiliated with or endorsed by AirVersa or Sleekpoint.
+
+## Supported devices
+
+These diffusers use the same Bluetooth protocol, so all of them are auto-discovered:
+
+| Bluetooth name | Model | Status |
+|---|---|---|
+| `SP_…`, `A32…` | Scenta XL (ANW) | ✅ Tested: everything works |
+| `SP3…` | Scenta (RDX) | 🟡 Should work, untested. Please report back! |
+| `SP1…`, `SP2…` | ANP / ANA models | 🟡 Should work, untested |
+| `SP4…` | U1 | ❌ Uses a different protocol, not supported |
+
+On untested models, power and the countdown sensors should work. The schedule format may differ. If the device doesn't report support for custom schedules, the integration logs a warning. Please [open an issue](https://github.com/akosin/airversa-ha/issues) with your results.
 
 ## Requirements
 

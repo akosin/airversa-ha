@@ -6,7 +6,7 @@ from homeassistant.core import callback
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH, DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import CONF_ADDRESS, CONF_NAME, DOMAIN
+from .const import CONF_ADDRESS, CONF_NAME, DOMAIN, model_for_name
 from .coordinator import AirVersaCoordinator, Schedule
 
 
@@ -20,12 +20,14 @@ class AirVersaEntity(CoordinatorEntity[AirVersaCoordinator]):
         address = (entry.data.get(CONF_ADDRESS) or "").replace(":", "").upper()
         self._attr_unique_id = f"{DOMAIN}_{address}_{key}"
         ble_address = entry.data.get(CONF_ADDRESS)
+        model = model_for_name(entry.data.get(CONF_NAME))
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, ble_address or entry.entry_id)},
             connections={(CONNECTION_BLUETOOTH, ble_address)} if ble_address else set(),
             name=entry.title or entry.data.get(CONF_NAME) or "AirVersa",
             manufacturer="AirVersa",
-            model="Scenta XL",
+            model=model[1] if model else "AirVersa diffuser",
+            model_id=model[0] if model else None,
         )
 
     @property

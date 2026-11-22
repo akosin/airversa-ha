@@ -11,7 +11,7 @@ from homeassistant.components import bluetooth
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 
-from .const import CONF_ADDRESS, CONF_KEY, CONF_NAME, DEFAULT_KEY, DOMAIN, NAME_PREFIX
+from .const import CONF_ADDRESS, CONF_KEY, CONF_NAME, DEFAULT_KEY, DOMAIN, NAME_PREFIXES
 from .coordinator import async_validate_key
 
 _LOGGER = logging.getLogger(__name__)
@@ -19,7 +19,7 @@ _LOGGER = logging.getLogger(__name__)
 
 def _title(name: str) -> str:
     """'SP_ANW_00001A2B' -> 'AirVersa 1A2B'."""
-    return f"AirVersa {name[-4:]}" if name.startswith(NAME_PREFIX) else name
+    return f"AirVersa {name[-4:]}" if name.startswith(NAME_PREFIXES) else name
 
 
 def _key_schema(default: str = DEFAULT_KEY) -> vol.Schema:
@@ -129,7 +129,7 @@ class AirVersaConfigFlow(ConfigFlow, domain=DOMAIN):
             info.address: info
             for info in bluetooth.async_discovered_service_info(self.hass, connectable=True)
             if info.name
-            and info.name.startswith(NAME_PREFIX)
+            and info.name.startswith(NAME_PREFIXES)
             and info.address not in configured
             and not self._name_configured(info.name)
         }
