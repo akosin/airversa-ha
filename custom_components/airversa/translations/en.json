@@ -1,0 +1,40 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "bluetooth_confirm": {
+        "title": "Set up {name}",
+        "description": "Found AirVersa diffuser **{ble_name}**.\n\nEnter its 4-digit activation code. The factory default is **8888**. If you changed it in the Sleekpoint app, use your code.\n\nClose the Sleekpoint app first: the diffuser only accepts one Bluetooth connection at a time. It will beep once while the code is checked.",
+        "data": {
+          "key": "Activation code"
+        }
+      },
+      "user": {
+        "title": "Set up an AirVersa diffuser",
+        "description": "Pick a diffuser Home Assistant can see over Bluetooth, and enter its 4-digit activation code (factory default **8888**).\n\nClose the Sleekpoint app first: the diffuser only accepts one Bluetooth connection at a time.",
+        "data": {
+          "address": "Diffuser",
+          "key": "Activation code"
+        }
+      },
+      "reauth_confirm": {
+        "title": "New activation code for {name}",
+        "description": "The diffuser rejected the saved activation code. This usually means it was changed in the Sleekpoint app. Enter the current 4-digit code.",
+        "data": {
+          "key": "Activation code"
+        }
+      }
+    },
+    "error": {
+      "invalid_key": "The diffuser rejected that activation code.",
+      "invalid_format": "The activation code is 4 digits.",
+      "cannot_connect": "Couldn't connect. Make sure the diffuser is powered on, in range of a Bluetooth adapter or proxy, and not connected to the Sleekpoint app.",
+      "unknown": "Unexpected error. Check the logs."
+    },
+    "abort": {
+      "already_configured": "This diffuser is already set up.",
+      "no_devices_found": "No AirVersa diffusers found over Bluetooth. Make sure the diffuser is powered on, in range of a Bluetooth adapter or ESPHome Bluetooth proxy, and not connected to the Sleekpoint app.",
+      "reauth_successful": "Activation code updated."
+    }
+  }
+}
