@@ -33,7 +33,7 @@
     },
     "abort": {
       "already_configured": "This diffuser is already set up.",
-      "no_devices_found": "No AirVersa diffusers found over Bluetooth. Make sure the diffuser is powered on, in range of a Bluetooth adapter or ESPHome Bluetooth proxy, and not connected to the Sleekpoint app.",
+      "no_devices_found": "No new AirVersa diffusers found over Bluetooth. Diffusers that are already set up, or connected to the Sleekpoint app, aren't listed. Make sure the diffuser is powered on and in range of a Bluetooth adapter or ESPHome Bluetooth proxy. After it's been disconnected, Home Assistant can take a minute or two to notice it again.",
       "reauth_successful": "Activation code updated."
     }
   }

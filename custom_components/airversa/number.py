@@ -1,6 +1,8 @@
 """AirVersa numbers: per-schedule diffuse and pause durations."""
 from __future__ import annotations
 
+import math
+
 from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import UnitOfTime
@@ -66,7 +68,11 @@ class PauseNumber(AirVersaScheduleEntity, NumberEntity):
 
     @property
     def native_min_value(self) -> float:
-        return round(self.coordinator.state.pause_min / 60, 2)
+        # The frontend only accepts min + n*step, so round the device minimum
+        # (5 s = 0.083 min) up to a whole step; otherwise 5.0 min is "invalid".
+        # Shorter pauses are still possible via airversa.set_schedule.
+        steps = math.ceil(self.coordinator.state.pause_min / 60 / self._attr_native_step)
+        return max(1, steps) * self._attr_native_step
 
     @property
     def native_max_value(self) -> float:
