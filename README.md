@@ -1,6 +1,6 @@
 # AirVersa for Home Assistant
 
-[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
+[![HACS Default](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://hacs.xyz/)
 [![Validate](https://github.com/akosin/airversa-ha/actions/workflows/validate.yml/badge.svg)](https://github.com/akosin/airversa-ha/actions/workflows/validate.yml)
 
 Local Bluetooth control of **AirVersa** scent diffusers (tested with the **Scenta XL**, other models [likely work](#supported-devices)) from Home Assistant. No Sleekpoint app and no cloud.
@@ -35,9 +35,18 @@ On untested models, power and the countdown sensors should work. The schedule fo
 
 ### HACS (recommended)
 
-1. In HACS, open the ⋮ menu → **Custom repositories**, add `https://github.com/akosin/airversa-ha` with type **Integration**.
-2. Search for **AirVersa** in HACS and download it.
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=akosin&repository=airversa-ha&category=integration)
+
+1. In HACS, search for **AirVersa** and open it. The button above also takes you straight there.
+2. Click **Download**.
 3. Restart Home Assistant.
+
+<details>
+<summary>AirVersa doesn't show up in HACS?</summary>
+
+Add it as a custom repository: in HACS, open the ⋮ menu → **Custom repositories**, add `https://github.com/akosin/airversa-ha` with type **Integration**, then search again.
+
+</details>
 
 ### Manual
 
